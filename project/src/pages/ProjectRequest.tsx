@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/common/AnimatedSection';
 import { 
   ArrowRight, 
@@ -13,7 +12,10 @@ import {
   Code,
   Database,
   Smartphone,
-  BarChart3
+  BarChart3,
+  Send,
+  Mail,
+  Phone
 } from 'lucide-react';
 
 const ProjectRequest = () => {
@@ -69,9 +71,46 @@ const ProjectRequest = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend or email service
-    console.log('Form submitted:', formData);
-    alert('Thank you for your project request! We\'ll get back to you within 24-48 hours.');
+    
+    // Create email body with form data
+    const emailBody = `
+Project Request from ${formData.name}
+
+Contact Information:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Phone: ${formData.phone || 'Not provided'}
+
+Project Details:
+- Type: ${projectTypes.find(type => type.value === formData.projectType)?.label || 'Not specified'}
+- Budget: ${budgetRanges.find(budget => budget.value === formData.budget)?.label || 'Not specified'}
+- Timeline: ${timelineOptions.find(timeline => timeline.value === formData.timeline)?.label || 'Not specified'}
+- Title: ${formData.title}
+
+Description:
+${formData.description}
+
+Requirements:
+${formData.requirements || 'Not specified'}
+
+Preferred Technologies:
+${formData.technologies || 'Not specified'}
+
+Expected Deliverables:
+${formData.deliverables || 'Not specified'}
+
+Additional Information:
+${formData.additionalInfo || 'Not specified'}
+    `.trim();
+
+    // Create mailto link
+    const mailtoLink = `mailto:rithikajoshi.b@gmail.com?subject=Project Request: ${formData.title || 'New Project'}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.open(mailtoLink, '_blank');
+    
+    // Show success message
+    alert('Thank you for your project request! Your email client will open with the pre-filled request. Please send the email and we\'ll get back to you within 24-48 hours.');
   };
 
   return (
@@ -151,7 +190,7 @@ const ProjectRequest = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                      Full Name *
+                      Your Full Name *
                     </label>
                     <input
                       type="text"
@@ -161,7 +200,7 @@ const ProjectRequest = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your full name"
+                      placeholder="Enter your full name"
                     />
                   </div>
                   <div>
@@ -176,7 +215,7 @@ const ProjectRequest = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your.email@example.com"
+                      placeholder="your.email@domain.com"
                     />
                   </div>
                   <div className="md:col-span-2">
@@ -190,7 +229,7 @@ const ProjectRequest = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+91 98765 43210"
                     />
                   </div>
                 </div>
@@ -200,7 +239,7 @@ const ProjectRequest = () => {
               <div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center">
                   <Code className="h-5 w-5 mr-2 text-cyan-600" />
-                  Project Type
+                  Select Project Type *
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {projectTypes.map((type) => (
@@ -235,7 +274,7 @@ const ProjectRequest = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center">
                     <DollarSign className="h-5 w-5 mr-2 text-cyan-600" />
-                    Budget Range
+                    Estimated Budget Range
                   </h3>
                   <select
                     name="budget"
@@ -243,7 +282,7 @@ const ProjectRequest = () => {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
                   >
-                    <option value="">Select budget range</option>
+                    <option value="">Choose your budget range</option>
                     {budgetRanges.map((range) => (
                       <option key={range.value} value={range.value}>
                         {range.label}
@@ -254,7 +293,7 @@ const ProjectRequest = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center">
                     <Clock className="h-5 w-5 mr-2 text-cyan-600" />
-                    Timeline
+                    Project Timeline
                   </h3>
                   <select
                     name="timeline"
@@ -262,7 +301,7 @@ const ProjectRequest = () => {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
                   >
-                    <option value="">Select timeline</option>
+                    <option value="">When do you need this completed?</option>
                     {timelineOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
@@ -276,7 +315,7 @@ const ProjectRequest = () => {
               <div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-cyan-600" />
-                  Project Details
+                  Detailed Project Information
                 </h3>
                 <div className="space-y-6">
                   <div>
@@ -291,7 +330,7 @@ const ProjectRequest = () => {
                       value={formData.title}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Brief title for your project"
+                      placeholder="e.g., E-commerce Website with AI Recommendations"
                     />
                   </div>
                   
@@ -307,7 +346,7 @@ const ProjectRequest = () => {
                       value={formData.description}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Describe your project in detail. What problem are you trying to solve?"
+                      placeholder="Provide a comprehensive description of your project. What problem does it solve? Who is the target audience? What are the main goals?"
                     ></textarea>
                   </div>
                   
@@ -322,7 +361,7 @@ const ProjectRequest = () => {
                       value={formData.requirements}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="List any specific features, functionalities, or technical requirements..."
+                      placeholder="• User authentication system&#10;• Payment integration&#10;• Mobile responsive design&#10;• Admin dashboard&#10;• API integrations"
                     ></textarea>
                   </div>
                   
@@ -337,7 +376,7 @@ const ProjectRequest = () => {
                       value={formData.technologies}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-                      placeholder="e.g., React, Python, TensorFlow, PostgreSQL"
+                      placeholder="React, Node.js, Python, TensorFlow, PostgreSQL, AWS, etc."
                     />
                   </div>
                   
@@ -352,7 +391,7 @@ const ProjectRequest = () => {
                       value={formData.deliverables}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="What do you expect to receive? (e.g., source code, documentation, deployed application)"
+                      placeholder="• Complete source code with comments&#10;• Technical documentation&#10;• Deployed application (if applicable)&#10;• User manual/guide&#10;• Database setup instructions"
                     ></textarea>
                   </div>
                   
@@ -367,7 +406,7 @@ const ProjectRequest = () => {
                       value={formData.additionalInfo}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Any additional details, constraints, or questions you'd like to share..."
+                      placeholder="• Any existing systems to integrate with?&#10;• Specific design preferences?&#10;• Performance requirements?&#10;• Compliance needs?&#10;• Questions or concerns?"
                     ></textarea>
                   </div>
                 </div>
@@ -377,13 +416,14 @@ const ProjectRequest = () => {
               <div className="text-center pt-6">
                 <button
                   type="submit"
-                  className="btn-primary px-8 py-4 text-lg hover-glow inline-flex items-center group"
+                  className="btn-primary px-8 py-4 text-lg hover-glow inline-flex items-center group shadow-xl"
                 >
+                  <Send className="mr-2 h-5 w-5" />
                   Submit Project Request
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
                 <p className="text-sm text-slate-500 mt-4">
-                  We'll review your request and get back to you within 24-48 hours with a detailed proposal.
+                  This will open your email client with a pre-filled message. Send it to receive a detailed proposal within 24-48 hours.
                 </p>
               </div>
             </form>
@@ -407,27 +447,27 @@ const ProjectRequest = () => {
             {[
               {
                 step: '1',
-                title: 'Request Review',
-                description: 'We carefully analyze your project requirements and technical specifications.',
-                time: 'Within 2 hours',
+                title: 'Form Submission',
+                description: 'Submit the detailed project request form with all your requirements.',
+                time: '5 minutes',
               },
               {
                 step: '2',
-                title: 'Proposal Creation',
-                description: 'We create a detailed proposal with timeline, milestones, and pricing.',
-                time: '24-48 hours',
+                title: 'Initial Review',
+                description: 'We analyze your requirements and may ask clarifying questions if needed.',
+                time: 'Within 4 hours',
               },
               {
                 step: '3',
-                title: 'Discussion & Refinement',
-                description: 'We discuss the proposal with you and make any necessary adjustments.',
-                time: '1-2 days',
+                title: 'Detailed Proposal',
+                description: 'Receive a comprehensive proposal with timeline, milestones, and pricing.',
+                time: '24-48 hours',
               },
               {
                 step: '4',
                 title: 'Project Kickoff',
-                description: 'Once approved, we begin development with regular progress updates.',
-                time: 'Immediate',
+                description: 'After approval, we start development with regular progress updates.',
+                time: 'Upon approval',
               },
             ].map((step, index) => (
               <AnimatedSection
@@ -454,25 +494,37 @@ const ProjectRequest = () => {
       <section className="py-20 bg-gradient-to-r from-cyan-600 to-teal-700">
         <AnimatedSection className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Prefer to Talk First?
+            Need to Discuss Your Project?
           </h2>
           <p className="text-xl text-cyan-100 mb-8">
-            If you'd like to discuss your project before submitting a formal request, we're here to help.
+            Have questions or want to discuss your project requirements before submitting? Contact us directly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:rithikajoshi.b@gmail.com?subject=Project Discussion"
+              href="mailto:rithikajoshi.b@gmail.com?subject=Project Discussion - Initial Consultation&body=Hi Rithika,%0D%0A%0D%0AI'd like to discuss a potential project with you.%0D%0A%0D%0AProject Type: [Please specify]%0D%0ABrief Description: [Tell us about your project]%0D%0A%0D%0ABest time to contact: [Your preference]%0D%0A%0D%0AThank you!"
               className="bg-white text-cyan-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group hover-glow"
             >
-              Email Us
+              <Mail className="mr-2 h-5 w-5" />
+              Email Discussion
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
-            <Link
-              to="/contact"
+            <a
+              href="https://wa.me/919876543210?text=Hi Rithika! I'd like to discuss a potential project with Cyanova Tech. Could we schedule a brief call to go over the requirements?"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center hover-glow"
             >
-              Contact Page
-            </Link>
+              <Phone className="mr-2 h-5 w-5" />
+              WhatsApp Chat
+            </a>
+          </div>
+          <div className="mt-8 text-center">
+            <p className="text-cyan-100 text-sm">
+              📧 <strong>rithikajoshi.b@gmail.com</strong> | 📱 <strong>+91 98765 43210</strong>
+            </p>
+            <p className="text-cyan-200 text-xs mt-2">
+              Available Mon-Sat, 9 AM - 8 PM IST | Response within 24 hours
+            </p>
           </div>
         </AnimatedSection>
       </section>
