@@ -58,21 +58,25 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-cyan-300">Connect</h3>
             <div className="space-y-3">
               <a
-                href="mailto:contact@cyanovatech.com"
+                href="mailto:rithikajoshi.b@gmail.com"
                 className="flex items-center space-x-2 text-slate-400 hover:text-cyan-300 transition-colors duration-300"
               >
                 <Mail className="h-4 w-4" />
-                <span>contact@cyanovatech.com</span>
+                <span>rithikajoshi.b@gmail.com</span>
               </a>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/rithika-joshi-007878368/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-slate-400 hover:text-cyan-300 transition-colors duration-300 hover:scale-110 transform"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/rithikajoshi0-0"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-slate-400 hover:text-cyan-300 transition-colors duration-300 hover:scale-110 transform"
                 >
                   <Github className="h-5 w-5" />
