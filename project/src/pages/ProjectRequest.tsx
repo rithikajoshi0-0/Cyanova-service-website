@@ -120,7 +120,7 @@ const ProjectRequest = () => {
                 Prefer to discuss your project directly?
               </p>
               <a
-                href="mailto:contact@cyanovatech.com?subject=Project Inquiry"
+                href="mailto:rithikajoshi.b@gmail.com?subject=Project Inquiry"
                 className="text-cyan-600 font-semibold hover:text-cyan-700 transition-colors duration-300"
               >
                 Send us an email instead
