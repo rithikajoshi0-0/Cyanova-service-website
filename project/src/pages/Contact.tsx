@@ -7,8 +7,8 @@ const Contact = () => {
       icon: Mail,
       title: 'Email Us',
       description: 'Send us an email and we\'ll respond within 24 hours',
-      contact: 'contact@cyanovatech.com',
-      action: 'mailto:contact@cyanovatech.com',
+      contact: 'rithikajoshi.b@gmail.com',
+      action: 'mailto:rithikajoshi.b@gmail.com',
     },
     {
       icon: MessageCircle,
@@ -22,13 +22,13 @@ const Contact = () => {
       title: 'Schedule a Call',
       description: 'Book a consultation to discuss your project in detail',
       contact: 'Available on request',
-      action: 'mailto:contact@cyanovatech.com?subject=Schedule a Call',
+      action: 'mailto:rithikajoshi.b@gmail.com?subject=Schedule a Call',
     },
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/rithika-joshi-007878368/', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/rithikajoshi0-0', label: 'GitHub' },
     { icon: Instagram, href: '#', label: 'Instagram' },
   ];
 
@@ -126,6 +126,8 @@ const Contact = () => {
               <a
                 key={index}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-cyan-100 to-teal-100 w-14 h-14 rounded-2xl flex items-center justify-center text-cyan-600 hover:shadow-lg transition-all duration-300 transform hover:scale-110 group"
                 aria-label={social.label}
               >
