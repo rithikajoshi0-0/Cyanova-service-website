@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AnimatedSection from '../components/common/AnimatedSection';
 import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
 const FAQ = () => {
@@ -55,7 +56,7 @@ const FAQ = () => {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Frequently Asked
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-600">
@@ -65,7 +66,7 @@ const FAQ = () => {
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Find answers to common questions about our services, process, and how we can help with your project.
           </p>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* FAQ Section */}
@@ -73,9 +74,11 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="bg-white rounded-xl shadow-lg border border-cyan-100 overflow-hidden transition-all duration-300 hover:shadow-xl"
+                animation="fade-up"
+                delay={index * 100}
+                className="card overflow-hidden hover-glow"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -106,7 +109,7 @@ const FAQ = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -114,7 +117,7 @@ const FAQ = () => {
 
       {/* Still Have Questions */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Still Have Questions?
           </h2>
@@ -123,12 +126,12 @@ const FAQ = () => {
           </p>
           <a
             href="mailto:contact@cyanovatech.com"
-            className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center group"
+            className="btn-primary px-8 py-4 text-lg hover-glow inline-flex items-center group"
           >
             Contact Us Directly
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
           </a>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
