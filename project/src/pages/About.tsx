@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AnimatedSection from '../components/common/AnimatedSection';
 import { 
   Award, 
   Users, 
@@ -133,7 +134,7 @@ const About = () => {
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <AnimatedSection animation="slide-left">
               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
                 About
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-600">
@@ -147,20 +148,20 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group"
+                  className="btn-primary hover-glow inline-flex items-center justify-center group"
                 >
                   Get In Touch
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 <Link
                   to="/services"
-                  className="border-2 border-cyan-500 text-cyan-600 px-6 py-3 rounded-full font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+                  className="btn-secondary inline-flex items-center justify-center"
                 >
                   View Services
                 </Link>
               </div>
-            </div>
-            <div className="relative">
+            </AnimatedSection>
+            <AnimatedSection animation="slide-right" className="relative">
               <div className="bg-gradient-to-br from-cyan-100 to-teal-100 rounded-2xl p-8 h-96 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-32 h-32 bg-gradient-to-r from-cyan-500 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-xl">
@@ -170,7 +171,7 @@ const About = () => {
                   <p className="text-slate-600 text-lg">Technical Freelancer & Developer</p>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -179,10 +180,12 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
+            <AnimatedSection className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               My Professional Journey
-            </h2>
-            <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-up" delay={200} className="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
               <p>
                 My journey in technology began with a deep curiosity about how software can solve real-world problems. 
                 What started as academic interest in computer science quickly evolved into a passion for creating 
@@ -205,7 +208,7 @@ const About = () => {
                 I believe that the best solutions come from truly understanding the problem, collaborating closely 
                 with clients, and delivering not just code, but comprehensive solutions that drive real results.
               </p>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -213,19 +216,21 @@ const About = () => {
       {/* Expertise Areas */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Technical Expertise
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Deep knowledge across multiple technology domains with hands-on experience in real-world applications.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {expertise.map((area, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-cyan-100"
+                animation={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+                delay={index * 150}
+                className="card relative p-8 hover-lift hover-glow"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-600 flex items-center justify-center flex-shrink-0">
@@ -250,7 +255,7 @@ const About = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -259,23 +264,28 @@ const About = () => {
       {/* Professional Timeline */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Professional Timeline
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Key milestones in my journey as a technical freelancer and developer.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="relative">
             {/* Timeline line */}
             <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-cyan-500 to-teal-600"></div>
             
             <div className="space-y-12">
               {timeline.map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                <AnimatedSection
+                  key={index}
+                  animation={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+                  delay={index * 200}
+                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                >
                   <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="bg-white rounded-xl p-6 shadow-lg border border-cyan-100 hover:shadow-xl transition-all duration-300">
+                    <div className="card p-6 hover-lift hover-glow">
                       <div className="flex items-center space-x-2 mb-3">
                         <Calendar className="h-5 w-5 text-cyan-600" />
                         <span className="text-cyan-600 font-semibold">{item.year}</span>
@@ -288,7 +298,7 @@ const About = () => {
                     <div className="w-4 h-4 bg-gradient-to-r from-cyan-500 to-teal-600 rounded-full border-4 border-white shadow-lg"></div>
                   </div>
                   <div className="w-1/2"></div>
-                </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -298,19 +308,21 @@ const About = () => {
       {/* Achievements */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Key Achievements
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Milestones that reflect my commitment to excellence and continuous growth.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {achievements.map((achievement, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-cyan-100 group"
+                animation="scale-up"
+                delay={index * 150}
+                className="card relative p-8 hover-lift hover-glow group"
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -325,7 +337,7 @@ const About = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -334,22 +346,27 @@ const About = () => {
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-cyan-600 to-teal-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               By the Numbers
             </h2>
             <p className="text-xl text-cyan-100">
               Measurable results that demonstrate our commitment to excellence.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
+              <AnimatedSection
+                key={index}
+                animation="scale-up"
+                delay={index * 100}
+                className="text-center group"
+              >
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                   {stat.number}
                 </div>
                 <div className="text-cyan-100 text-lg">{stat.label}</div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -358,26 +375,28 @@ const About = () => {
       {/* Values Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Core Values & Principles
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               The fundamental principles that guide every project and client relationship.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="text-center group hover:transform hover:scale-105 transition-all duration-300"
+                animation="fade-up"
+                delay={index * 100}
+                className="text-center group hover:transform hover:scale-105 transition-all duration-500 ease-out"
               >
-                <div className="bg-gradient-to-br from-cyan-100 to-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-gradient-to-br from-cyan-100 to-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-500 hover-glow">
                   <value.icon className="h-8 w-8 text-cyan-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{value.title}</h3>
                 <p className="text-slate-600">{value.description}</p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -387,7 +406,7 @@ const About = () => {
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
+            <AnimatedSection animation="slide-left" className="order-2 lg:order-1">
               <div className="bg-gradient-to-br from-cyan-100 to-teal-100 rounded-2xl p-8 h-80 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-teal-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
@@ -397,8 +416,8 @@ const About = () => {
                   <p className="text-slate-600">Specialized in AI & Software Engineering</p>
                 </div>
               </div>
-            </div>
-            <div className="order-1 lg:order-2">
+            </AnimatedSection>
+            <AnimatedSection animation="slide-right" className="order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
                 Education & Background
               </h2>
@@ -420,7 +439,7 @@ const About = () => {
                   hands-on experience during my studies laid the groundwork for my successful freelancing career.
                 </p>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -428,14 +447,14 @@ const About = () => {
       {/* Why Choose Me */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Why Work With Me?
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               What makes Cyanova Tech the right choice for your technical projects.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -469,9 +488,11 @@ const About = () => {
                 icon: Target,
               },
             ].map((reason, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-cyan-100 group"
+                animation="fade-up"
+                delay={index * 100}
+                className="card p-6 hover-lift hover-glow group"
               >
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <reason.icon className="h-6 w-6 text-white" />
@@ -482,7 +503,7 @@ const About = () => {
                 <p className="text-slate-600 text-sm leading-relaxed">
                   {reason.description}
                 </p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -490,7 +511,7 @@ const About = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-cyan-600 to-teal-700">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Work Together?
           </h2>
@@ -500,19 +521,19 @@ const About = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/request"
-              className="bg-white text-cyan-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group"
+              className="bg-white text-cyan-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group hover-glow"
             >
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+              className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center hover-glow"
             >
               Get In Touch
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
