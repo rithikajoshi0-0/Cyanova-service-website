@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AnimatedSection from '../components/common/AnimatedSection';
 import { 
   Brain, 
   Globe, 
@@ -61,7 +62,7 @@ const Services = () => {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Our Technical
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-600">
@@ -72,7 +73,7 @@ const Services = () => {
             Comprehensive technical solutions tailored to your specific needs. 
             From AI implementations to full-stack applications, we deliver professional results.
           </p>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* Services Grid */}
@@ -80,9 +81,11 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-cyan-100 group"
+                animation={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+                delay={index * 150}
+                className="card relative p-8 hover-lift hover-glow group"
               >
                 <div className="flex items-start space-x-4">
                   <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${service.gradient} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
@@ -105,7 +108,7 @@ const Services = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -114,14 +117,14 @@ const Services = () => {
       {/* Process Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Our Development Process
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               A structured approach ensuring quality delivery and client satisfaction.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -140,13 +143,18 @@ const Services = () => {
                 description: 'We deliver your completed project with documentation and provide ongoing support as needed.',
               },
             ].map((step, index) => (
-              <div key={index} className="text-center">
+              <AnimatedSection
+                key={index}
+                animation="fade-up"
+                delay={index * 200}
+                className="text-center"
+              >
                 <div className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg">
                   {step.step}
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{step.title}</h3>
                 <p className="text-slate-600">{step.description}</p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -154,7 +162,7 @@ const Services = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-cyan-600 to-teal-700">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Get Started?
           </h2>
@@ -163,12 +171,12 @@ const Services = () => {
           </p>
           <Link
             to="/request"
-            className="bg-white text-cyan-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center group"
+            className="bg-white text-cyan-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center group hover-glow"
           >
             Request a Quote
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
