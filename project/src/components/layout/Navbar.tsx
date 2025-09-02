@@ -38,9 +38,9 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                className={`nav-link ${
                   isActive(item.href)
-                    ? 'text-cyan-600 bg-cyan-50'
+                    ? 'text-cyan-600 bg-cyan-50 active'
                     : 'text-slate-600 hover:text-cyan-600 hover:bg-cyan-50'
                 }`}
               >
@@ -49,7 +49,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/request"
-              className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-6 py-2 rounded-full hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="btn-primary px-6 py-2 text-sm hover-glow"
             >
               Request Project
             </Link>
@@ -77,9 +77,9 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                className={`block nav-link text-base ${
                   isActive(item.href)
-                    ? 'text-cyan-600 bg-cyan-50'
+                    ? 'text-cyan-600 bg-cyan-50 active'
                     : 'text-slate-600 hover:text-cyan-600 hover:bg-cyan-50'
                 }`}
                 onClick={() => setIsOpen(false)}
@@ -89,7 +89,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/request"
-              className="block bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-6 py-2 rounded-full text-center mt-4 hover:from-cyan-600 hover:to-teal-700 transition-all duration-300"
+              className="block btn-primary text-center mt-4"
               onClick={() => setIsOpen(false)}
             >
               Request Project
