@@ -1,4 +1,5 @@
 import React from 'react';
+import AnimatedSection from '../components/common/AnimatedSection';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 const Blog = () => {
@@ -63,7 +64,7 @@ const Blog = () => {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Tech
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-600">
@@ -73,7 +74,7 @@ const Blog = () => {
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Stay updated with the latest trends, insights, and news from the world of technology and our freelancing journey.
           </p>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* Blog Posts */}
@@ -81,11 +82,13 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <article
+              <AnimatedSection
                 key={post.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-cyan-100 overflow-hidden group"
+                animation="fade-up"
+                delay={post.id * 100}
               >
-                <div className="relative overflow-hidden">
+                <article className="card relative overflow-hidden group hover-lift hover-glow">
+                  <div className="relative overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.title}
@@ -96,9 +99,9 @@ const Blog = () => {
                       {post.category}
                     </span>
                   </div>
-                </div>
+                  </div>
                 
-                <div className="p-6">
+                  <div className="p-6">
                   <div className="flex items-center text-sm text-slate-500 mb-3 space-x-4">
                     <div className="flex items-center space-x-1">
                       <Calendar className="h-4 w-4" />
@@ -122,8 +125,9 @@ const Blog = () => {
                     Read More
                     <ArrowRight className="ml-1 h-4 w-4 group-hover/button:translate-x-1 transition-transform duration-300" />
                   </button>
-                </div>
-              </article>
+                  </div>
+                </article>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -131,7 +135,7 @@ const Blog = () => {
 
       {/* Newsletter Section */}
       <section className="py-20 bg-gradient-to-r from-cyan-600 to-teal-700">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Stay Updated
           </h2>
@@ -142,13 +146,13 @@ const Blog = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-3 rounded-full border-none focus:ring-2 focus:ring-white/50 focus:outline-none"
+              className="flex-1 px-6 py-3 rounded-full border-none focus:ring-2 focus:ring-white/50 focus:outline-none transition-all duration-300"
             />
-            <button className="bg-white text-cyan-600 px-6 py-3 rounded-full font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="bg-white text-cyan-600 px-6 py-3 rounded-full font-semibold hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover-glow">
               Subscribe
             </button>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
