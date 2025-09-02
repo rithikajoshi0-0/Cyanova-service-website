@@ -1,4 +1,5 @@
 import React from 'react';
+import AnimatedSection from '../components/common/AnimatedSection';
 import { Mail, Phone, MapPin, MessageCircle, Linkedin, Github, Instagram } from 'lucide-react';
 
 const Contact = () => {
@@ -36,7 +37,7 @@ const Contact = () => {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Get In
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-600">
@@ -47,7 +48,7 @@ const Contact = () => {
             Ready to start your project? We'd love to hear from you. 
             Choose your preferred way to connect and let's discuss your needs.
           </p>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* Contact Methods */}
@@ -55,11 +56,13 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {contactMethods.map((method, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className="text-center group hover:transform hover:scale-105 transition-all duration-300"
+                animation="fade-up"
+                delay={index * 150}
+                className="text-center group hover:transform hover:scale-105 transition-all duration-500 ease-out"
               >
-                <div className="bg-gradient-to-br from-cyan-100 to-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-gradient-to-br from-cyan-100 to-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-500 hover-glow">
                   <method.icon className="h-8 w-8 text-cyan-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">{method.title}</h3>
@@ -70,7 +73,7 @@ const Contact = () => {
                 >
                   {method.contact}
                 </a>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -79,16 +82,16 @@ const Contact = () => {
       {/* Google Form Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Request Your Project
             </h2>
             <p className="text-xl text-slate-600">
               Fill out our project request form and we'll get back to you with a detailed proposal.
             </p>
-          </div>
+          </AnimatedSection>
           
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-cyan-100">
+          <AnimatedSection animation="scale-up" delay={300} className="card p-8 shadow-xl hover-glow">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-semibold text-slate-900 mb-4">Project Request Form</h3>
               <p className="text-slate-600 mb-6">
@@ -106,20 +109,20 @@ const Contact = () => {
                   href="https://forms.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white px-6 py-3 rounded-full hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center group"
+                  className="btn-primary hover-glow inline-flex items-center group"
                 >
                   Open Project Form
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Social Media */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-2xl font-semibold text-slate-900 mb-8">Connect With Us</h3>
           <div className="flex justify-center space-x-6">
             {socialLinks.map((social, index) => (
@@ -128,14 +131,14 @@ const Contact = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-br from-cyan-100 to-teal-100 w-14 h-14 rounded-2xl flex items-center justify-center text-cyan-600 hover:shadow-lg transition-all duration-300 transform hover:scale-110 group"
+                className="bg-gradient-to-br from-cyan-100 to-teal-100 w-14 h-14 rounded-2xl flex items-center justify-center text-cyan-600 hover:shadow-lg transition-all duration-500 transform hover:scale-110 group hover-glow"
                 aria-label={social.label}
               >
                 <social.icon className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
               </a>
             ))}
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );
